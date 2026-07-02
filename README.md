@@ -124,10 +124,8 @@ tests/
     test_agent.py
 
 requirements.txt
-render.yaml
 runtime.txt
 README.md
-APPROACH.md
 ```
 
 ---
@@ -238,22 +236,6 @@ https://shl-assessment-recommender-2-61vr.onrender.com
 Approach
 
 APPROACH.md
-
----
-
-# 📷 Screenshots
-
-Swagger
-
-(Add screenshot)
-
-Conversation Example
-
-(Add screenshot)
-
-Deployment
-
-(Add screenshot)
 
 ---
 
