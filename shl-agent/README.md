@@ -45,30 +45,110 @@ curl -X POST localhost:8000/chat -H "Content-Type: application/json" -d '{
 ```
 
 To use Anthropic instead, set `LLM_PROVIDER=anthropic` and `ANTHROPIC_API_KEY`.
+# 🚀 SHL Assessment Recommender
 
-## Before you submit — please do these
-1. **Run `scripts/scrape_catalog.py` yourself** from a machine with normal internet
-   access and diff its output against `data/catalog.json`. I built the bundled
-   catalog from a community scrape (disclosed in `APPROACH.md`) because this dev
-   sandbox can't reach shl.com — the CSS selectors in that script are my best
-   reconstruction of the page structure and should be verified against the live DOM.
-2. **Smoke-test a real LLM call.** I could not reach Gemini or Anthropic's APIs from
-   this sandbox, so `GeminiLLM`/`AnthropicLLM` are implementation-complete but
-   untested against the live API. Run the curl command above with a real key before
-   deploying.
-3. **Run the 10 provided conversation traces** against your deployed endpoint — I
-   didn't have access to that zip file to test against directly.
+> Production-ready Conversational AI Agent for recommending SHL Individual Test Solutions using FastAPI, Google Gemini, grounded catalog validation, and stateless conversational reasoning.
 
-## Deploy to Render
-1. Push this repo to GitHub.
-2. In Render: New → Blueprint → point at the repo (it will read `render.yaml`).
-3. Set the `GOOGLE_API_KEY` env var in the Render dashboard (marked `sync: false`
-   in render.yaml, so it won't be committed).
-4. Deploy. First `/health` call may take up to ~2 min on the free tier (cold start).
-5. Confirm both endpoints are reachable:
-   ```bash
-   curl https://<your-app>.onrender.com/health
-   ```
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
+![Gemini](https://img.shields.io/badge/LLM-Google%20Gemini%202.0%20Flash-orange)
+![Render](https://img.shields.io/badge/Deployment-Render-success)
+![License](https://img.shields.io/badge/Status-Completed-success)
+
+---
+
+# 🌐 Live Demo
+
+### Public API
+
+https://shl-assessment-recommender-2-61vr.onrender.com
+
+### Swagger UI
+
+https://shl-assessment-recommender-2-61vr.onrender.com/docs
+
+### OpenAPI
+
+https://shl-assessment-recommender-2-61vr.onrender.com/openapi.json
+
+### Health
+
+https://shl-assessment-recommender-2-61vr.onrender.com/health
+
+---
+
+# 📌 Overview
+
+This project implements a conversational AI agent capable of helping recruiters and hiring managers discover appropriate SHL Individual Test Solutions through natural conversation.
+
+Instead of relying on keyword search, the assistant:
+
+- asks clarifying questions
+- recommends assessments
+- refines recommendations
+- compares assessments
+- rejects prompt injection
+- refuses off-topic requests
+
+The project was built as part of the SHL AI Research Internship assignment.
+
+---
+
+# ✨ Features
+
+✅ Conversational AI
+
+✅ FastAPI Backend
+
+✅ Google Gemini 2.0 Flash
+
+✅ Prompt Guardrails
+
+✅ Grounded Recommendations
+
+✅ Stateless API
+
+✅ Assessment Comparison
+
+✅ Recommendation Refinement
+
+✅ Catalog Validation
+
+✅ Swagger Documentation
+
+✅ Render Deployment
+
+---
+
+# 🏗 Architecture
+
+User
+
+↓
+
+FastAPI
+
+↓
+
+Conversation Agent
+
+↓
+
+Guardrails
+
+↓
+
+Gemini
+
+↓
+
+Catalog Validation
+
+↓
+
+Grounded Response
+
+---
 
 ## Environment variables
 | Var | Required | Default | Notes |
@@ -78,3 +158,167 @@ To use Anthropic instead, set `LLM_PROVIDER=anthropic` and `ANTHROPIC_API_KEY`.
 | `GEMINI_MODEL` | no | `gemini-2.0-flash` | |
 | `ANTHROPIC_API_KEY` | if provider=anthropic | — | |
 | `ANTHROPIC_MODEL` | no | `claude-sonnet-4-5` | |
+
+```
+
+---
+
+# ⚙️ Tech Stack
+
+| Category | Technology |
+|------------|------------|
+| Backend | FastAPI |
+| Language | Python 3.11 |
+| LLM | Google Gemini 2.0 Flash |
+| Validation | Pydantic |
+| Deployment | Render |
+| Documentation | Swagger/OpenAPI |
+| Version Control | GitHub |
+
+---
+
+# 🚀 API
+
+## Health
+
+GET
+
+```
+/health
+```
+
+Response
+
+```json
+{
+  "status":"ok"
+}
+```
+
+---
+
+## Chat
+
+POST
+
+```
+/chat
+```
+
+Example
+
+```json
+{
+ "messages":[
+   {
+      "role":"user",
+      "content":"Hiring a Java developer with 4 years experience."
+   }
+ ]
+}
+```
+
+---
+
+# 🧠 Capabilities
+
+The agent supports:
+
+- Clarification
+- Recommendation
+- Refinement
+- Comparison
+- Refusal
+- Prompt Injection Protection
+
+---
+
+# 🔒 Guardrails
+
+- Prompt Injection Detection
+- Scope Restriction
+- Catalog Validation
+- Hallucination Prevention
+
+---
+
+# 🧪 Testing
+
+Validated using:
+
+- Swagger
+- Manual conversations
+- Mock LLM
+- Unit Tests
+- Deployment verification
+
+---
+
+# 🌍 Deployment
+
+Hosted on Render
+
+Public URL
+
+https://shl-assessment-recommender-2-61vr.onrender.com
+
+---
+
+# 📄 Documentation
+
+Approach
+
+APPROACH.md
+
+---
+
+# 📷 Screenshots
+
+Swagger
+
+(Add screenshot)
+
+Conversation Example
+
+(Add screenshot)
+
+Deployment
+
+(Add screenshot)
+
+---
+
+# 🔮 Future Improvements
+
+- Hybrid Retrieval
+- Vector Search
+- FAISS
+- Redis Cache
+- Docker
+- CI/CD
+- Kubernetes
+
+---
+
+# 👨‍💻 Author
+
+**Abhinandan Kancharla**
+
+AI Backend Engineer
+
+GitHub
+
+https://github.com/abhinandan6123
+
+Portfolio
+https://abhikancharla.vercel.app/
+
+
+---
+
+# ⭐ Acknowledgements
+
+Built for the SHL AI Research Internship Assignment.
+
+
+
